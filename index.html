@@ -23,9 +23,11 @@
             let polvora = document.getElementById('polvora').value;
             let capsula = document.getElementById('capsula').value;
             
-            let municao = Math.min(Math.floor(polvora / 150), Math.floor(capsula / 100)) * 100;
+            let producoes = Math.min(Math.floor(polvora / 150), Math.floor(capsula / 100));
+            let municao = producoes * 100;
             
-            document.getElementById('resultado').innerText = `Você pode fabricar ${municao} munições com a quantidade de pólvora e cápsulas disponíveis.`;
+            document.getElementById('resultado').innerText = `Você pode fabricar ${municao} munições.
+            Você precisa inserir ${producoes} vezes no painel de produção.`;
         }
     </script>
 </body>
