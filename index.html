@@ -20,14 +20,18 @@
     
     <script>
         function calcularMunicao() {
-            let polvora = document.getElementById('polvora').value;
-            let capsula = document.getElementById('capsula').value;
+            let polvora = parseInt(document.getElementById('polvora').value);
+            let capsula = parseInt(document.getElementById('capsula').value);
             
             let producoes = Math.min(Math.floor(polvora / 150), Math.floor(capsula / 100));
             let municao = producoes * 100;
             
+            let sobraPolvora = polvora - (producoes * 150);
+            let sobraCapsula = capsula - (producoes * 100);
+            
             document.getElementById('resultado').innerText = `Você pode fabricar ${municao} munições.
-            Você precisa inserir o numero: ${producoes} no painel de produção.`;
+            Você precisa inserir o numero: ${producoes} no painel de produção.
+            Sobrará ${sobraPolvora} pólvoras e ${sobraCapsula} cápsulas.`;
         }
     </script>
 </body>
