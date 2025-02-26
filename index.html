@@ -123,29 +123,31 @@
         }
 
         function calcularMunicao() {
-            let polvora = parseInt(document.getElementById('polvora').value) || 0;
-            let capsula = parseInt(document.getElementById('capsula').value) || 0;
-            
-            let producoes = Math.min(Math.floor(polvora / 150), Math.floor(capsula / 100));
-            let municao = producoes * 100;
-            
-            let sobraPolvora = polvora - (producoes * 150);
-            let sobraCapsula = capsula - (producoes * 100);
-            
-            let faltaPolvora = 150 - sobraPolvora;
-            let faltaCapsula = 100 - sobraCapsula;
-            
-            let entregarPolvora = producoes * 150;
-            let entregarCapsula = producoes * 100;
-            
-            document.getElementById('resultadoMunicao').innerHTML = ` 
-                <div><i class="fas fa-check-circle"></i> Você pode fabricar <strong>${municao}</strong> munições.</div>
-                <div><i class="fas fa-arrow-right"></i> Você precisa inserir <strong>${producoes}</strong> vezes no painel de produção.</div>
-                <div><i class="fas fa-hand-holding"></i> Entregue <strong>${entregarPolvora}</strong> pólvoras e <strong>${entregarCapsula}</strong> cápsulas no painel redondo para produzir.</div>
-                <div><i class="fas fa-archive"></i> Sobrará <strong>${sobraPolvora}</strong> pólvoras e <strong>${sobraCapsula}</strong> cápsulas guardadas.</div>
-                <div><i class="fas fa-exclamation-triangle"></i> Faltam <strong>${faltaPolvora}</strong> pólvoras e <strong>${faltaCapsula}</strong> cápsulas para completar mais uma produção.</div>
-            `;
-        }
+        let polvora = parseInt(document.getElementById('polvora').value) || 0;
+        let capsula = parseInt(document.getElementById('capsula').value) || 0;
+        
+        let producoes = Math.min(Math.floor(polvora / 150), Math.floor(capsula / 100));
+        let municao = producoes * 100;
+        
+        let sobraPolvora = polvora - (producoes * 150);
+        let sobraCapsula = capsula - (producoes * 100);
+        
+        let faltaPolvora = 150 - sobraPolvora;
+        let faltaCapsula = 100 - sobraCapsula;
+        
+        let entregarPolvora = producoes * 150;
+        let entregarCapsula = producoes * 100;
+        
+        let faltaPolvoraTexto = faltaPolvora > 0 ? `Faltam <strong>${faltaPolvora}</strong> pólvoras` : `Sobram <strong>${Math.abs(faltaPolvora)}</strong> pólvoras`;
+        let faltaCapsulaTexto = faltaCapsula > 0 ? `Faltam <strong>${faltaCapsula}</strong> cápsulas` : `Sobram <strong>${Math.abs(faltaCapsula)}</strong> cápsulas`;
+        
+        document.getElementById('resultadoMunicao').innerHTML =  
+            `<div><i class="fas fa-check-circle"></i> Você pode fabricar <strong>${municao}</strong> munições com esse farm.</div>
+            <div><i class="fas fa-arrow-right"></i> Você precisa inserir o numero: <strong>${producoes}</strong> no painel de produção.</div>
+            <div><i class="fas fa-hand-holding"></i> Entregue <strong>${entregarPolvora}</strong> pólvoras e <strong>${entregarCapsula}</strong> cápsulas no painel para produzir o valor acima.</div>
+            <div><i class="fas fa-archive"></i> Sobrará <strong>${sobraPolvora}</strong> pólvoras e <strong>${sobraCapsula}</strong> cápsulas guardadas.</div>
+            <div><i class="fas fa-exclamation-triangle"></i> ${faltaPolvoraTexto} e ${faltaCapsulaTexto} para completar mais uma produção.</div>`;
+    }
     </script>
     <br>
     <div class="gif-container">
