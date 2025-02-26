@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Munição</title>
-    <!-- Incluindo o link para o Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ2LJv3aJ6pG1UqGz2vua7e7Yo6S1EXWk5fBdCwVVHZyVeMFXpP8XbD4fBZd" crossorigin="anonymous">
-    <!-- Incluindo o link para o Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #212121;
+            background-color: #121212;
             color: #e91e63;
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
         }
-        input {
-            background-color: rgba(51, 51, 51, 0.7); /* Fundo semi-transparente para input */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(233, 30, 99, 0.5);
+        }
+        input, select {
+            background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid #e91e63;
             color: #e91e63;
             padding: 8px;
@@ -25,18 +31,9 @@
             border-radius: 5px;
             text-align: center;
         }
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        input[type="number"] {
-            -moz-appearance: textfield;
-            appearance: none;
-        }
         button {
             background-color: #e91e63;
-            color: black;
+            color: white;
             border: none;
             padding: 12px 30px;
             margin: 10px;
@@ -48,66 +45,75 @@
         button:hover {
             background-color: #ff4081;
         }
-        h2, h3 {
-            color: #e91e63;
-        }
-        p {
-            font-size: 18px;
-        }
         .result-card {
-            background-color: rgba(51, 51, 51, 0.8); /* Fundo semi-transparente */
+            background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid #e91e63;
             color: #e91e63;
             border-radius: 10px;
-            padding: 20px;
-            align-items: center;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .result-card i {
-            color: #ff4081;
-        }
-        .mb-3 {
-            margin-bottom: 20px;
-        }
-        .result-text {
-            text-align: left;
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #e91e63;
-        }
-        .gif-container {
-            text-align: center;
-            margin-top: 30px;
+            padding: 15px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <h2><i class="fas fa-bomb"></i> Calculadora de Valor de Munição</h2>
+
+        <div class="mb-3">
+            <label for="tipoMunicao" class="form-label">Escolha a munição:</label>
+            <select id="tipoMunicao" class="form-control">
+                <option value="1.2|1.5">Fajuta</option>
+                <option value="1.6|1.8">Five</option>
+                <option value="2.8|3.0">G3</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="quantidade" class="form-label">Quantidade:</label>
+            <input type="number" id="quantidade" min="1" class="form-control" placeholder="Digite a quantidade...">
+        </div>
+
+        <div class="mb-3">
+            <input type="checkbox" id="parceria"> <label for="parceria">Com parceria</label>
+        </div>
+
+        <button onclick="calcularValor()"><i class="fas fa-calculator"></i> Calcular</button>
+
+        <div id="resultado" class="result-card"></div>
+    </div>
+
+    <div class="container mt-4">
         <h2><i class="fas fa-bomb"></i> Calculadora de Farm de Munição</h2>
 
         <div class="mb-3">
-            <label for="polvora" class="form-label">Quantidade de <i class="fas fa-fire"></i> Pólvora:</label>
+            <label for="polvora" class="form-label">Quantidade de Pólvora:</label>
             <input type="number" id="polvora" min="0" class="form-control" placeholder="Digite a quantidade...">
         </div>
 
         <div class="mb-3">
-            <label for="capsula" class="form-label">Quantidade de <i class="fas fa-capsules"></i> Cápsulas:</label>
+            <label for="capsula" class="form-label">Quantidade de Cápsulas:</label>
             <input type="number" id="capsula" min="0" class="form-control" placeholder="Digite a quantidade...">
         </div>
 
-        <button onclick="calcularMunicao()" class="btn btn-pink"><i class="fas fa-calculator"></i> Calcular</button>
+        <button onclick="calcularMunicao()"><i class="fas fa-calculator"></i> Calcular</button>
 
-        <h3><i class="fas fa-info-circle"></i> Resultado:</h3>
-        <div id="resultado" class="result-card result-text"></div>
+        <div id="resultadoMunicao" class="result-card result-text"></div>
     </div>
 
-    <!-- Incluindo o script do Bootstrap 5 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0c9z9+H6+9D9P4Z6keD0aAP6y0yWy5Jw6/XF2foKZjVhEKQh" crossorigin="anonymous"></script>
-
     <script>
+        function calcularValor() {
+            let tipoMunicao = document.getElementById('tipoMunicao').value.split('|');
+            let precoComParceria = parseFloat(tipoMunicao[0]) * 1000;
+            let precoSemParceria = parseFloat(tipoMunicao[1]) * 1000;
+            let quantidade = parseInt(document.getElementById('quantidade').value) || 0;
+            let comParceria = document.getElementById('parceria').checked;
+            
+            let precoFinal = comParceria ? precoComParceria : precoSemParceria;
+            let total = precoFinal * quantidade;
+            
+            document.getElementById('resultado').innerHTML = `<strong>Valor total:</strong> ${total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
+        }
+
         function calcularMunicao() {
             let polvora = parseInt(document.getElementById('polvora').value) || 0;
             let capsula = parseInt(document.getElementById('capsula').value) || 0;
@@ -124,7 +130,7 @@
             let entregarPolvora = producoes * 150;
             let entregarCapsula = producoes * 100;
             
-            document.getElementById('resultado').innerHTML = ` 
+            document.getElementById('resultadoMunicao').innerHTML = ` 
                 <div><i class="fas fa-check-circle"></i> Você pode fabricar <strong>${municao}</strong> munições.</div>
                 <div><i class="fas fa-arrow-right"></i> Você precisa inserir <strong>${producoes}</strong> vezes no painel de produção.</div>
                 <div><i class="fas fa-hand-holding"></i> Entregue <strong>${entregarPolvora}</strong> pólvoras e <strong>${entregarCapsula}</strong> cápsulas no painel redondo para produzir.</div>
@@ -133,12 +139,12 @@
             `;
         }
     </script>
-
-    <!-- GIF abaixo do footer -->
+    <br>
     <div class="gif-container">
-        <img src="/standard.gif" alt="GIF Animado" width="30%" />
+        <img src="/standard.gif" alt="GIF Animado" width="32.5%"  style="border-radius: 10px;" />
     </div>
 </body>
+<br>
 <footer>
     <p>&copy; 2025 Feito por Caio Castro. <br> Todos os direitos reservados ao Vaticano.</p>
 </footer>
