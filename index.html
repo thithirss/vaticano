@@ -17,7 +17,7 @@
             padding: 20px;
         }
         input {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.7); /* Fundo semi-transparente para input */
             border: 1px solid #e91e63;
             color: #e91e63;
             padding: 8px;
@@ -55,12 +55,11 @@
             font-size: 18px;
         }
         .result-card {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8); /* Fundo semi-transparente */
             border: 1px solid #e91e63;
             color: #e91e63;
             border-radius: 10px;
             padding: 20px;
-
             align-items: center;
             text-align: center;
             margin-top: 20px;
@@ -73,6 +72,15 @@
         }
         .result-text {
             text-align: left;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #e91e63;
+        }
+        .gif-container {
+            text-align: center;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -116,7 +124,7 @@
             let entregarPolvora = producoes * 150;
             let entregarCapsula = producoes * 100;
             
-            document.getElementById('resultado').innerHTML = `
+            document.getElementById('resultado').innerHTML = ` 
                 <div><i class="fas fa-check-circle"></i> Você pode fabricar <strong>${municao}</strong> munições.</div>
                 <div><i class="fas fa-arrow-right"></i> Você precisa inserir <strong>${producoes}</strong> vezes no painel de produção.</div>
                 <div><i class="fas fa-hand-holding"></i> Entregue <strong>${entregarPolvora}</strong> pólvoras e <strong>${entregarCapsula}</strong> cápsulas no painel redondo para produzir.</div>
@@ -125,10 +133,13 @@
             `;
         }
     </script>
-</body>
-</html>
 
+    <!-- GIF abaixo do footer -->
+    <div class="gif-container">
+        <img src="/standard.gif" alt="GIF Animado" width="30%" />
+    </div>
+</body>
 <footer>
-    <p>&copy; 2025 Feito por Caio Castro. 
-        <br> Todos os direitos reservados ao Vaticano.</p>
+    <p>&copy; 2025 Feito por Caio Castro. <br> Todos os direitos reservados ao Vaticano.</p>
 </footer>
+</html>
