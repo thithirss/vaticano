@@ -126,17 +126,17 @@
         let polvora = parseInt(document.getElementById('polvora').value) || 0;
         let capsula = parseInt(document.getElementById('capsula').value) || 0;
         
-        let producoes = Math.min(Math.floor(polvora / 150), Math.floor(capsula / 100));
+        let producoes = Math.min(Math.floor(polvora / 220), Math.floor(capsula / 220));
         let municao = producoes * 100;
         
-        let sobraPolvora = polvora - (producoes * 150);
-        let sobraCapsula = capsula - (producoes * 100);
+        let sobraPolvora = polvora - (producoes * 220);
+        let sobraCapsula = capsula - (producoes * 220);
         
-        let faltaPolvora = 150 - sobraPolvora;
-        let faltaCapsula = 100 - sobraCapsula;
+        let faltaPolvora = 220 - sobraPolvora;
+        let faltaCapsula = 220 - sobraCapsula;
         
-        let entregarPolvora = producoes * 150;
-        let entregarCapsula = producoes * 100;
+        let entregarPolvora = producoes * 220;
+        let entregarCapsula = producoes * 220;
         
         let faltaPolvoraTexto = faltaPolvora > 0 ? `Faltam <strong>${faltaPolvora}</strong> pólvoras` : `Sobram <strong>${Math.abs(faltaPolvora)}</strong> pólvoras`;
         let faltaCapsulaTexto = faltaCapsula > 0 ? `Faltam <strong>${faltaCapsula}</strong> cápsulas` : `Sobram <strong>${Math.abs(faltaCapsula)}</strong> cápsulas`;
